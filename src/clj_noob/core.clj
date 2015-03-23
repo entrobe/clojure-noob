@@ -82,3 +82,17 @@
 (defn better-fib
   [n]
   (take n (map first (iterate (fn [[a b]] [b (+ a b)]) [1 1]))))
+
+(defn palin
+  [coll]
+  (let [func (comp apply str)]
+    (= (func coll) (func (reverse coll)))))
+
+(defn my-flat
+  [coll]
+  (loop [coll coll acc '()]
+    (if (empty? coll)
+        acc
+        (if (seq? (first coll))
+          (recur (cons (first coll) (rest coll)) acc)
+          (recur (rest coll) (cons (first coll) acc))))))
