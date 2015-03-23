@@ -94,5 +94,11 @@
     (if (empty? coll)
         acc
         (if (seq? (first coll))
-          (recur (cons (first coll) (rest coll)) acc)
+          (recur (cons (first coll) ) acc)
           (recur (rest coll) (cons (first coll) acc))))))
+
+(def bk-seq [1 2])
+(first bk-seq)
+(def bk-func (fn [x] + x x))
+(bk-func 1)
+(prn (+ 1 bk-seq))
