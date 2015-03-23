@@ -56,3 +56,29 @@
     (if (empty? coll)
       x
       (recur (rest coll) (inc x)))))
+
+(defn better-count
+  [coll]
+  (reduce + (map (constantly 1) coll)))
+
+(defn rev-seq
+  [coll]
+  (loop [c coll acc '()]
+    (if (empty? c)
+      acc
+      (recur (rest c) (cons (first c) acc)))))
+
+(defn rev-seq-2000
+  [coll]
+  (reduce #(cons %2 %1) '() coll))
+
+(defn fib
+  [n]
+  (loop [coll '(1 1) n (- n 2)]
+    (if (= n 0)
+      (reverse coll)
+      (recur  (cons (+ (first coll) (second coll)) coll) (dec n)))))
+
+(defn better-fib
+  [n]
+  (take n (map first (iterate (fn [[a b]] [b (+ a b)]) [1 1]))))
